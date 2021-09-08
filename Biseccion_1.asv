@@ -15,12 +15,12 @@ aproximado=input('Error maximo Ea= ');
 fx1=subs(fx,x,x1);
 fxu=subs(fx,x,xu);
 
-if((x1>xu)>0)
-    error('No se ingreso el intervalo correcatmente');
+if(x1>xu)
+    error('\n No se ingreso el intervalo correcatmente');
 end
 
 if((fx1*fxu)>0)
-    error('No se cumple el teorema del valor intermedio');
+    error('\n No se cumple el teorema del valor intermedio');
 end
 
 %mientras que la tolerncia 1 sema mayor a la 2
@@ -32,7 +32,7 @@ while(e_aprox>aproximado)
     xanterior=xactual;
     xactual=xr;
    
-    %en mi funcion fx reemplazas x con x1/xu 
+    %en mi funcion fx reemplazas x con xr 
     fx1=subs(fx,x,x1);
     fxu=subs(fx,x,xu);
     
@@ -45,13 +45,13 @@ while(e_aprox>aproximado)
         x1=xr;
     end
     
-    if((fxr)*(fx1)==0)
-        fprintf('\n La raiz es: %f',xr);
+    if((fxr)*(fx1)<eps)
+        fprintf(' La raiz es: %f',xr);
     end
    
     if(cont>1)
         e_aprox=((abs(xactual-xanterior))/xactual)*100;
     end
-    fprintf('\n Iteracion %d, intervalo [%f][%f]',cont,x1,xu);
+    fprintf(' Iteracion %d, intervalo [%f][%f]',cont,x1,xu);
 end
-fprintf('\n Raiz de f(x)= %f\n',xr);
+fprintf(' Raiz de f(x)= %f\n',xr);
